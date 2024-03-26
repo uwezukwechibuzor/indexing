@@ -42,11 +42,11 @@ func ListenAndPublishBlocksToSQS(sqsSvc *sqs.SQS, queueURL string) {
 	}
 }
 
-// buildBlockMessage builds the selected message string for a block event
+// buildBlockMessage returns selected block data fields from a block event
 // block height
 // Total Number of Txs
 // Time
-// Proposer Addree
+// Proposer Address
 func buildBlockMessage(block *types.Block) string {
 	return fmt.Sprintf("New Block Height: %d, Time: %s, Number of Txs: %d, Proposer Hex: %s",
 		block.Header.Height, block.Header.Time.Format(time.RFC3339), len(block.Data.Txs), block.Header.ProposerAddress)
